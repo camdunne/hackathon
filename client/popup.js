@@ -13,8 +13,8 @@ function clickHandler(event) {
 
   var toDate = to && to.value;
   var endTime = (toDate) ? new Date(toDate).getTime(): new Date().getTime();
-  var url = document.querySelector('div.text');
-  var urlText = to && to.value;
+  var url = document.querySelector('input.urlText');
+  var urlText = url && url.value;
   var text = url || '';
   var options = { 
     text,
