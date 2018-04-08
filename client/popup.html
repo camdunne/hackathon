@@ -1,13 +1,32 @@
 <html>
   <head>
-<script type="css/stylesheet" src="main.css"></script>
+
+  <!-- Load c3.css -->
+  <link href="/c3.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="main.css"></link>
+
   </head>
   <body>
     <div class="container">
-      <pre class='text' value=''></pre>
-      <button>click</button>
+      <div id="chart"></div>
+      <center class='search'>
+        <div>
+          Start Date:
+        <input class='fromDate' value='' />
+      </div>
+      <div>
+          End Date:
+        <input class='toDate' value='' />
+      </div>
+        <button class='button'>Submit</button>
+      </div>
+
     </div>
 
+
+<!-- Load d3.js and c3.js -->
+<script src="/d3.min.js"></script>
+<script src="/c3.min.js"></script>
     <script src="popup.js"></script>
   </body>
 </html>
