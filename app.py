@@ -4,6 +4,10 @@ import os
 import json
 import urllib
 import urllib.request
+import pickle
+
+def dd():
+    return defaultdict(dict)
 
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'client')
 app = Flask(__name__, template_folder=tmpl_dir)
@@ -28,7 +32,9 @@ def process_user_history():
 
     # user_text =  request.form['user_data']
     
-    analyzed_data = "Stupid java!!"
+    # analyzed_data = "Stupid java!!"
+    with open('cam_stats_cache.pkl', 'rb') as f:
+        analyzed_data = pickle.load(f)
     print("Returning:",analyzed_data)
     return jsonify(analyzed_data)
 
