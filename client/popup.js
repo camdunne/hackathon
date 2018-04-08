@@ -1,5 +1,7 @@
 (function(){
-
+  var data = {
+    columns: [ 'data1', 0]
+  };
 var container = document.querySelector('div.container');
 var search = container.querySelector('div.search');
 var button = document.querySelector('button');
@@ -21,7 +23,8 @@ function clickHandler(event) {
     startTime,
     endTime,
   };
-  chrome.history.search(options, function(values){
+
+  function searchHandler(values) {
     var data = Object.keys(values).map((key, i) => {
       return values[key].url;
     });
@@ -34,22 +37,21 @@ function clickHandler(event) {
       .then((values) => {
 
       });
-    
-  });
+  }
+  chrome.history.search(options, searchHandler);
 }
 
 button.addEventListener('click', clickHandler);
 
 
 // chart
-(function(){
-  var data = {};
+
 var chart = c3.generate({
   data: {
       // iris data from R
       columns: [
-          ['data1', 30],
-          ['data2', 120],
+          // ['data1', 30],
+          // ['data2', 120],
       ],
       type : 'pie',
       onclick: function (d, i) { console.log("onclick", d, i); },
@@ -68,15 +70,15 @@ setTimeout(function () {
   });
 }, 1500);
 
-setTimeout(function () {
-  chart.unload({
-      ids: 'data1'
-  });
-  chart.unload({
-      ids: 'data2'
-  });
-}, 2500);
-})();
+// setTimeout(function () {
+//   chart.unload({
+//       ids: 'data1'
+//   });
+//   chart.unload({
+//       ids: 'data2'
+//   });
+// }, 2500);
+
 
 })();
 
