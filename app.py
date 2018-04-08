@@ -21,7 +21,7 @@ def index():
 def process_user_history():
     print("[POST] process_user_history(): was called")
 
-    received_data = request.get_json()
+    received_data = request.get_json(force=True)
 
     if("urls" in received_data):
     	url_list = received_data['urls']
