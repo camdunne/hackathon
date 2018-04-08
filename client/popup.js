@@ -16,8 +16,8 @@ function clickHandler(event) {
   var toDate = to && to.value;
   var endTime = (toDate) ? new Date(toDate).getTime(): new Date().getTime();
   var url = document.querySelector('input.urlText');
-  var urlText = url && url.value;
-  var text = url || '';
+  var text = url && url.value;
+
   var options = { 
     text,
     startTime,
@@ -34,8 +34,14 @@ function clickHandler(event) {
      };
     fetch('http://localhost:8888/send_urls', options)
       .then(res => res.json())
-      .then((values) => {
+      .then(({ data }) => {
+        var columns = Object.keys(data).map((key, i) => [ key, data[key]]);
+        var sorted = [... columns].sort((a,b) => {
 
+        });
+        chart.load({
+          columns,
+        })
       });
   }
   chrome.history.search(options, searchHandler);
