@@ -6,18 +6,18 @@ var button = document.querySelector('button');
 
 
 function clickHandler(event) {
-console.log(event)
-var from = document.querySelector('input.fromDate');
-var to = document.querySelector('input.toDate');
+  var from = document.querySelector('input.fromDate');
+  var to = document.querySelector('input.toDate');
   var fromDate = from && from.value;
   var startTime = (fromDate) ? new Date(fromDate).getTime(): undefined;
 
   var toDate = to && to.value;
   var endTime = (toDate) ? new Date(toDate).getTime(): new Date().getTime();
-  console.log(startTime, endTime);
-
+  var url = document.querySelector('div.text');
+  var urlText = to && to.value;
+  var text = url || '';
   var options = { 
-    text: '',
+    text,
     startTime,
     endTime,
   };
@@ -25,13 +25,25 @@ var to = document.querySelector('input.toDate');
     var data = Object.keys(values).map((key, i) => {
       return values[key].url;
     });
-    console.log('values', data);
+    var options = { 
+      method: 'POST',
+      body: JSON.stringify(data),
+     };
+    fetch('http://localhost:8888/send_urls', options)
+      .then(res => res.json())
+      .then((values) => {
+
+      });
     
   });
 }
 
 button.addEventListener('click', clickHandler);
 
+
+// chart
+(function(){
+  var data = {};
 var chart = c3.generate({
   data: {
       // iris data from R
@@ -64,6 +76,7 @@ setTimeout(function () {
       ids: 'data2'
   });
 }, 2500);
+})();
 
 })();
 

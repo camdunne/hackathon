@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from flask import Flask, flash, redirect, render_template, request, session, abort
 from flask import jsonify
 import os
