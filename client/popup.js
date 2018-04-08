@@ -25,12 +25,12 @@ function clickHandler(event) {
   };
 
   function searchHandler(values) {
-    var data = Object.keys(values).map((key, i) => {
+    var url = Object.keys(values).map((key, i) => {
       return values[key].url;
     });
     var options = { 
       method: 'POST',
-      body: JSON.stringify(data),
+      body: JSON.stringify({ url }),
      };
     fetch('http://localhost:8888/send_urls', options)
       .then(res => res.json())
